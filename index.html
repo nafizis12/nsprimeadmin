@@ -204,13 +204,13 @@ tr:hover td{background:rgba(255,255,255,.015);}
     <div class="ns">Money</div>
     <div class="ni" data-p="intelligence"><i class="fas fa-brain" style="width:16px;text-align:center;color:var(--g);"></i> Intelligence Hub</div>
     <div class="ni" data-p="tasks"><i class="fas fa-tasks" style="width:16px;text-align:center;"></i> Tasks & Proofs</div>
-    <div class="ni" data-p="affiliate"><i class="fas fa-gem" style="width:16px;text-align:center;color:var(--g);"></i> Affiliate Hub <span id="baff" class="nb" style="display:none;">0</span></div>
     <div class="ni" data-p="withdrawals" style="justify-content:space-between;padding-right:10px;"><div style="display:flex;align-items:center;gap:8px;"><i class="fas fa-wallet" style="width:16px;text-align:center;color:var(--gr);"></i> Withdrawals</div><span id="bw" class="nb" style="display:none;">0</span></div>
     <div class="ni" data-p="commission"><i class="fas fa-percentage" style="width:16px;text-align:center;color:var(--gr);"></i> Commission Engine</div>
     <div class="ns">Platform</div>
     <div class="ni" data-p="tutorials"><i class="fas fa-video" style="width:16px;text-align:center;"></i> Tutorials</div>
     <div class="ni" data-p="support"><i class="fas fa-headset" style="width:16px;text-align:center;"></i> Support</div>
     <div class="ni" data-p="actlog"><i class="fas fa-history" style="width:16px;text-align:center;color:var(--pu);"></i> Activity Log</div>
+    <div class="ni" data-p="useractivity"><i class="fas fa-user-clock" style="width:16px;text-align:center;color:var(--cy);"></i> User Activity</div>
     <div class="ni" data-p="settings"><i class="fas fa-cogs" style="width:16px;text-align:center;"></i> Settings</div>
   </nav>
   <div style="padding:10px;border-top:1px solid var(--bo);">
@@ -372,87 +372,9 @@ tr:hover td{background:rgba(255,255,255,.015);}
         </div>
         <div class="gl" style="padding:0;overflow:hidden;"><div style="padding:12px 16px;border-bottom:1px solid var(--bo);"><span style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:2px;">Active Tasks</span></div><div id="tl2" style="padding:12px;display:flex;flex-direction:column;gap:7px;max-height:290px;overflow-y:auto;"></div></div>
       </div>
-      <div class="gl" style="margin-bottom:13px;border-top:2px solid var(--g);">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:9px;"><div><span style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--g);">Reels Promotion Task Monitor</span><p style="font-size:9px;color:var(--mu);margin-top:2px;">Admin target + per-user progress control.</p></div><button onclick="pushReelsTargetToAll()" class="btn bg" style="font-size:8.5px;padding:5px 9px;">PUSH TARGET TO USERS</button></div>
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;"><div style="background:#06060f;border:1px solid var(--bo);border-radius:7px;padding:8px;"><span class="lbl b">Target</span><b id="rtm-target">0</b></div><div style="background:#06060f;border:1px solid var(--bo);border-radius:7px;padding:8px;"><span class="lbl g">Current Total</span><b id="rtm-current">0</b></div><div style="background:#06060f;border:1px solid var(--bo);border-radius:7px;padding:8px;"><span class="lbl o">Completed</span><b id="rtm-completed">0</b></div><div style="background:#06060f;border:1px solid var(--bo);border-radius:7px;padding:8px;"><span class="lbl p">Users Tracked</span><b id="rtm-users">0</b></div></div>
-      </div>
       <div class="gl" style="background:rgba(5,5,8,.9);">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--bo);"><span style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--gr);">Proof Review Center</span><select id="pf" class="inp" style="width:auto;padding:5px 10px;" onchange="loadProofs()"><option value="pending">Pending</option><option value="all">All</option></select></div>
         <div id="pl" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;"></div>
-      </div>
-    </div>
-
-    <!-- AFFILIATE HUB -->
-    <div class="ps" id="page-affiliate">
-      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin-bottom:13px;">
-        <div class="gl" style="padding:12px;border-top:2px solid var(--g);"><span class="lbl o">Affiliate Leads</span><div id="af-leads" style="font-size:20px;font-weight:900;color:var(--g);">0</div></div>
-        <div class="gl" style="padding:12px;border-top:2px solid var(--gr);"><span class="lbl g">Verified Sales</span><div id="af-sales" style="font-size:20px;font-weight:900;color:var(--gr);">0</div></div>
-        <div class="gl" style="padding:12px;border-top:2px solid var(--bl);"><span class="lbl b">Tracked Clicks</span><div id="af-clicks" style="font-size:20px;font-weight:900;color:var(--bl);">0</div></div>
-        <div class="gl" style="padding:12px;border-top:2px solid var(--pu);"><span class="lbl p">Unique Visitors</span><div id="af-uniq" style="font-size:20px;font-weight:900;color:var(--pu);">0</div></div>
-        <div class="gl" style="padding:12px;border-top:2px solid var(--cy);"><span class="lbl c">Prize Claims</span><div id="af-claims" style="font-size:20px;font-weight:900;color:var(--cy);">0</div></div>
-      </div>
-
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:13px;">
-        <div class="gl" style="border-top:2px solid var(--g);">
-          <h3 style="font-weight:900;font-size:13px;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;color:var(--g);">Mega Milestone Controls</h3>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-            <div><label class="lbl o">Sale Target</label><input id="af-target" class="inp io" type="number" min="1" value="10"></div>
-            <div><label class="lbl o">Sale Commission (৳)</label><input id="af-commission" class="inp io" type="number" min="0" value="500"></div>
-            <div><label class="lbl">Prize Title</label><input id="af-prize" class="inp" value="Cox's Bazar Tour / iPhone"></div>
-            <div><label class="lbl">Prize Description</label><input id="af-prize-desc" class="inp" value="Grand Prize for 10 verified sales"></div>
-          </div>
-          <div style="display:flex;gap:8px;margin-top:9px;align-items:center;">
-            <label class="tog"><input type="checkbox" id="af-enabled"><span class="tsl"></span></label><span style="font-size:10.5px;font-weight:700;color:var(--mu);flex:1;">Affiliate challenge enabled</span>
-            <button onclick="saveAffiliateConfig()" class="btn bg">SAVE</button>
-          </div>
-        </div>
-        <div class="gl" style="border-top:2px solid var(--bl);">
-          <h3 style="font-weight:900;font-size:13px;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;color:var(--bl);">Reels Promotion Controls</h3>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-            <div><label class="lbl b">Admin Target Views</label><input id="reels-target" class="inp" type="number" min="1" value="10000"></div>
-            <div><label class="lbl o">Reward Coins</label><input id="reels-reward" class="inp io" type="number" min="0" value="100"></div>
-          </div>
-          <div style="margin-top:8px;"><label class="lbl">Task ID (optional)</label><input id="reels-task-id" class="inp" placeholder="reels_promotion"></div>
-          <div style="display:flex;gap:8px;margin-top:9px;align-items:center;">
-            <label class="tog"><input type="checkbox" id="reels-enabled"><span class="tsl"></span></label><span style="font-size:10.5px;font-weight:700;color:var(--mu);flex:1;">Reels task enabled</span>
-            <button onclick="saveReelsConfig()" class="btn bb">SAVE TARGET</button>
-          </div>
-          <div style="margin-top:10px;background:#06060f;border:1px solid var(--bo);border-radius:8px;padding:9px;font-size:10px;color:var(--mu);">The member app should read <b style="color:var(--bl)">reels_target</b> from the user document. This panel controls the global target/reward and can also push the target to selected users.</div>
-        </div>
-      </div>
-
-      <div class="gl" style="margin-bottom:13px;border-top:2px solid var(--bl);">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><div><h3 style="font-weight:900;font-size:13px;color:var(--bl);">Affiliate Training & Telegram</h3><p style="font-size:9px;color:var(--mu);margin-top:2px">Control the training title, sales guidance and Telegram group shown inside the member Affiliate Hub.</p></div><button onclick="saveAffiliateTraining()" class="btn bb">SAVE TRAINING</button></div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-          <div><label class="lbl b">Telegram Training Group URL</label><input id="af-tg-url" class="inp" placeholder="https://t.me/your_group"></div>
-          <div><label class="lbl">Training Title</label><input id="af-training-title" class="inp" value="Affiliate Sales Training"></div>
-          <div style="grid-column:1/-1"><label class="lbl">Training Description</label><input id="af-training-desc" class="inp" value="Learn how to find genuine buyers, present the course clearly, follow up and submit a verified lead."></div>
-          <div style="grid-column:1/-1"><label class="lbl">Sales Training Steps <span style="font-weight:600;color:var(--mu)">(one step per line)</span></label><textarea id="af-training-steps" class="inp" rows="5">Choose a course and learn its core benefits
-Find relevant buyers through your own audience
-Explain price, value and delivery clearly
-Follow up professionally and avoid spam
-Submit the buyer lead for admin verification</textarea></div>
-        </div>
-      </div>
-
-      <div class="gl" style="margin-bottom:13px;border-top:2px solid var(--g);">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;"><div><h3 style="font-weight:900;font-size:13px;color:var(--g);">IT Course Marketplace</h3><p style="font-size:9px;color:var(--mu);margin-top:2px;">Admin controls title, price, commission and active state.</p></div><button onclick="openCourseEditor()" class="btn bg"><i class="fas fa-plus"></i> ADD COURSE</button></div>
-        <div id="af-courses" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;"></div>
-      </div>
-
-      <div class="gl" style="margin-bottom:13px;padding:0;overflow:hidden;border-top:2px solid var(--gr);">
-        <div style="padding:12px 16px;border-bottom:1px solid var(--bo);display:flex;justify-content:space-between;align-items:center;"><span style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--gr);">Affiliate Leads / Sales Verification</span><select id="af-lead-filter" class="inp" style="width:auto;padding:5px 9px;" onchange="loadAffiliateLeads()"><option value="all">All</option><option value="pending">Pending</option><option value="verified">Verified</option><option value="rejected">Rejected</option></select></div>
-        <div style="max-height:340px;overflow:auto;"><table><thead><tr><th>Buyer</th><th>Phone</th><th>User</th><th>Course</th><th>Commission</th><th>Status</th><th>Time</th><th style="text-align:right;">Action</th></tr></thead><tbody id="af-lead-table"></tbody></table></div>
-      </div>
-
-      <div class="gl" style="margin-bottom:13px;padding:0;overflow:hidden;border-top:2px solid var(--cy);">
-        <div style="padding:12px 16px;border-bottom:1px solid var(--bo);display:flex;justify-content:space-between;align-items:center;"><span style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--cy);">Grand Prize Claims</span><button onclick="loadPrizeClaims()" class="btn bcy" style="font-size:8.5px;padding:4px 9px;">REFRESH</button></div>
-        <div style="max-height:260px;overflow:auto;"><table><thead><tr><th>User</th><th>Verified Sales</th><th>Prize</th><th>Status</th><th>Claimed</th><th style="text-align:right;">Action</th></tr></thead><tbody id="af-claim-table"></tbody></table></div>
-      </div>
-
-      <div class="gl" style="padding:0;overflow:hidden;border-top:2px solid var(--bl);">
-        <div style="padding:12px 16px;border-bottom:1px solid var(--bo);display:flex;justify-content:space-between;align-items:center;"><div><span style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--bl);">Smart Link Click Intelligence</span><p style="font-size:9px;color:var(--mu);margin-top:2px;">Shows which member generated the click, category, visitor/session and time.</p></div><button onclick="loadAffiliateClicks()" class="btn bb" style="font-size:8.5px;padding:4px 9px;">REFRESH</button></div>
-        <div style="max-height:390px;overflow:auto;"><table><thead><tr><th>User</th><th>Category</th><th>Visitor</th><th>Source</th><th>Time</th><th style="text-align:right;">Valid</th></tr></thead><tbody id="af-click-table"></tbody></table></div>
       </div>
     </div>
 
@@ -501,6 +423,41 @@ Submit the buyer lead for admin verification</textarea></div>
     <!-- ACTIVITY LOG -->
     <div class="ps" id="page-actlog">
       <div class="gl"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;"><h3 style="font-weight:900;font-size:13px;text-transform:uppercase;letter-spacing:1px;color:var(--pu);">Admin Activity Log</h3><button onclick="clearLog()" class="btn br" style="font-size:9px;"><i class="fas fa-trash"></i> CLEAR</button></div><div id="al" style="display:flex;flex-direction:column;max-height:70vh;overflow-y:auto;"></div></div>
+    </div>
+
+
+    <!-- USER ACTIVITY -->
+    <div class="ps" id="page-useractivity">
+      <div class="gl" style="border-top:2px solid var(--cy);padding:0;overflow:hidden;">
+        <div style="padding:15px 16px;border-bottom:1px solid var(--bo);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+          <div>
+            <h3 style="font-weight:900;font-size:14px;text-transform:uppercase;letter-spacing:1px;color:var(--cy);">
+              <i class="fas fa-user-clock"></i> User Activity Monitor
+            </h3>
+            <p style="font-size:9.5px;color:var(--mu);margin-top:4px;">
+              Live member actions: tasks, missions, reels, affiliate leads, discount requests, withdrawals and referral setup.
+            </p>
+          </div>
+          <div style="display:flex;gap:7px;flex-wrap:wrap;">
+            <select id="uaf-user" class="inp" style="width:180px;padding:8px 10px;font-size:10px;" onchange="renderUserActivity()"><option value="all">All users</option></select>
+            <select id="uaf-type" class="inp" style="width:150px;padding:8px 10px;font-size:10px;" onchange="renderUserActivity()">
+              <option value="all">All activity</option><option value="task_submission">Task submission</option>
+              <option value="mission_submission">Mission submission</option><option value="reels_submission">Reels submission</option>
+              <option value="affiliate_lead">Affiliate lead</option><option value="discount_request">Discount request</option>
+              <option value="withdrawal_request">Withdrawal request</option><option value="referral_codes">Referral codes</option>
+            </select>
+            <button class="btn bb" style="font-size:9px;" onclick="loadUserActivity(true)"><i class="fas fa-rotate"></i> REFRESH</button>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:12px;border-bottom:1px solid var(--bo);">
+          <div style="background:rgba(6,182,212,.07);border:1px solid rgba(6,182,212,.15);border-radius:8px;padding:10px;"><div style="font-size:8px;color:var(--cy);font-weight:800;">EVENTS LOADED</div><div id="uac-total" style="font-size:19px;font-weight:900;margin-top:3px;">0</div></div>
+          <div style="background:rgba(16,185,129,.07);border:1px solid rgba(16,185,129,.15);border-radius:8px;padding:10px;"><div style="font-size:8px;color:var(--gr);font-weight:800;">TODAY</div><div id="uac-today" style="font-size:19px;font-weight:900;margin-top:3px;">0</div></div>
+          <div style="background:rgba(245,166,35,.07);border:1px solid rgba(245,166,35,.15);border-radius:8px;padding:10px;"><div style="font-size:8px;color:var(--g);font-weight:800;">PENDING REVIEW</div><div id="uac-pending" style="font-size:19px;font-weight:900;margin-top:3px;">0</div></div>
+          <div style="background:rgba(139,92,246,.07);border:1px solid rgba(139,92,246,.15);border-radius:8px;padding:10px;"><div style="font-size:8px;color:var(--pu);font-weight:800;">ACTIVE USERS</div><div id="uac-users" style="font-size:19px;font-weight:900;margin-top:3px;">0</div></div>
+        </div>
+        <div style="padding:12px;border-bottom:1px solid var(--bo);"><input id="uaf-search" class="inp" style="width:100%;padding:9px 11px;font-size:10px;" placeholder="Search by user name, email, UID, activity or detail..." oninput="renderUserActivity()"></div>
+        <div id="uac-list" style="max-height:68vh;overflow-y:auto;"></div>
+      </div>
     </div>
 
     <!-- SETTINGS -->
@@ -766,28 +723,6 @@ Submit the buyer lead for admin verification</textarea></div>
           </div>
         </div>
       </div>
-      <div class="gl" style="margin-bottom:13px;border-top:2px solid var(--g);">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:11px;">
-          <div><div class="lbl o" style="margin:0;">💎 Affiliate Account Control</div><div style="font-size:8.5px;color:var(--mu);margin-top:3px;">Per-user sales, commission, milestone and Reels controls</div></div>
-          <span id="affiliate-user-status" class="ba ba-o">0 SALES</span>
-        </div>
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">
-          <div><label class="lbl o">Verified Sales</label><input type="number" id="faffsales" class="inp io" min="0"></div>
-          <div><label class="lbl g">Affiliate Earned</label><input type="number" id="faffearn" class="inp ig" step="0.01" min="0"></div>
-          <div><label class="lbl p">Milestone Target</label><input type="number" id="fafftarget" class="inp ip" min="1"></div>
-          <div><label class="lbl">Prize Eligible</label><label class="tog" style="margin-top:7px;display:inline-flex;"><input type="checkbox" id="faffeligible"><span class="tsl"></span></label></div>
-        </div>
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px;">
-          <div><label class="lbl b">Reels Current</label><input type="number" id="faffreelscurrent" class="inp" min="0"></div>
-          <div><label class="lbl b">Reels Target</label><input type="number" id="faffreelstarget" class="inp" min="1"></div>
-          <div><label class="lbl o">Reels Reward</label><input type="number" id="faffreelsreward" class="inp io" min="0"></div>
-          <div><label class="lbl g">Reels Claimed</label><label class="tog" style="margin-top:7px;display:inline-flex;"><input type="checkbox" id="faffreelsclaimed"><span class="tsl"></span></label></div>
-        </div>
-        <div style="display:flex;justify-content:flex-end;gap:6px;margin-top:10px;">
-          <button onclick="resetAffiliateProgress()" class="btn br" style="font-size:8.5px;padding:5px 9px;">RESET AFFILIATE</button>
-          <button onclick="saveAffiliateUserControl()" class="btn bg" style="font-size:8.5px;padding:5px 11px;">SAVE AFFILIATE CONTROL</button>
-        </div>
-      </div>
       <div class="gl"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;padding-bottom:9px;border-bottom:1px solid var(--bo);"><div class="lbl o" style="margin:0;">💸 Withdrawal History</div><span id="whc" class="ba ba-o">0 requests</span></div><div id="whl" style="display:flex;flex-direction:column;gap:0;max-height:230px;overflow-y:auto;"></div></div>
     </div>
 
@@ -888,18 +823,14 @@ Submit the buyer lead for admin verification</textarea></div>
   </div>
 </div>
 
-
-<!-- AFFILIATE COURSE MODAL -->
-<div class="mb" id="af-course-modal"><div class="md" style="width:min(520px,96vw);"><div style="padding:14px 16px;border-bottom:1px solid var(--bo);display:flex;justify-content:space-between;align-items:center;"><b style="font-size:13px;color:var(--g);">Course Editor</b><button onclick="CM('af-course-modal')" class="btn bgh" style="padding:5px 8px;">×</button></div><div style="padding:16px;display:flex;flex-direction:column;gap:9px;"><input type="hidden" id="af-course-id"><div><label class="lbl">Course Title</label><input id="af-course-title" class="inp"></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;"><div><label class="lbl">Price (৳)</label><input id="af-course-price" class="inp" type="number"></div><div><label class="lbl o">Commission (৳)</label><input id="af-course-commission" class="inp io" type="number" value="500"></div></div><div><label class="lbl">Course URL</label><input id="af-course-url" class="inp" type="url"></div><div><label class="lbl">Course Image URL</label><input id="af-course-image" class="inp" type="url" placeholder="https://.../course-image.jpg"></div><div id="af-course-image-preview" style="display:none;border:1px solid var(--bo);border-radius:8px;padding:6px;background:#06060f;"><img id="af-course-image-preview-img" src="" alt="Course image preview" style="width:100%;height:130px;object-fit:cover;border-radius:6px;display:block;"></div><div style="font-size:9px;color:var(--mu);">Use a public HTTPS image URL. Example: https://example.com/course.jpg</div><div style="display:flex;align-items:center;gap:8px;"><label class="tog"><input type="checkbox" id="af-course-active" checked><span class="tsl"></span></label><span style="font-size:10.5px;color:var(--mu);">Visible to members</span></div><button onclick="saveCourse()" class="btn bg" style="justify-content:center;">SAVE COURSE</button></div></div></div>
-
 <!-- =================== ALL SCRIPTS =================== -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
-import { getFirestore, doc, getDoc, setDoc, updateDoc, deleteDoc, onSnapshot, collection, query, where, getDocs, orderBy, limit, increment, writeBatch, Timestamp, addDoc, runTransaction } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
+import { getFirestore, doc, getDoc, setDoc, updateDoc, deleteDoc, onSnapshot, collection, query, where, getDocs, orderBy, limit, increment, writeBatch, Timestamp, addDoc } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
 
 const FC={apiKey:"AIzaSyCU2RfLeclEyyxzEActtl5ks1P_NPvATOE",authDomain:"ns-prime-d7ca5.firebaseapp.com",projectId:"ns-prime-d7ca5",storageBucket:"ns-prime-d7ca5.firebasestorage.app",messagingSenderId:"172231719671",appId:"1:172231719671:web:3dafc0ace7b44fbe0071f2"};
-const ADMIN_EMAIL="samirislam3611@gmail.com",ADMIN_UIDS=["8iQxhwWpdaXMB03CORs6Mccrlxt1","XQA7yLiAD9Xq9FCGEp8Spj2DXHB2"],CLAUDE="https://api.anthropic.com/v1/messages";
+const ADMIN="samirislam3611@gmail.com",CLAUDE="https://api.anthropic.com/v1/messages";
 const app=initializeApp(FC),auth=getAuth(app),db=getFirestore(app);
 let AU=[],TC=[],SC=new Set(),CP=[],aiH=[],chatU=null,CS={l1:10,l2:5,l3:2,autoCredit:false};
 let alog=JSON.parse(localStorage.getItem('nslog')||'[]'),tickArr=[];
@@ -917,133 +848,15 @@ function addTick(msg){tickArr.push(msg);const inner=document.getElementById('ti-
 
 window.CM=id=>document.getElementById(id).classList.remove('open');
 window.toggleAI=()=>document.getElementById('aip').classList.toggle('hid');
-setInterval(()=>{document.getElementById('lt').innerText=new Date().toLocaleTimeString('en-BD');if(document.getElementById('page-affiliate')?.classList.contains('active'))updateReelsMonitor();},1000);
+setInterval(()=>{document.getElementById('lt').innerText=new Date().toLocaleTimeString('en-BD');},1000);
 
 window.openDoor=()=>{document.getElementById('dl').style.transform='translateX(-100%)';document.getElementById('dr').style.transform='translateX(100%)';document.getElementById('ebtn').style.opacity='0';setTimeout(()=>document.getElementById('door').style.display='none',1500);};
 
-onAuthStateChanged(auth,u=>{if(u&&ADMIN_UIDS.includes(u.uid)){document.getElementById('lsc').style.display='none';document.getElementById('app').style.display='flex';initApp();loadSettingsData();log('Login','Admin logged in','success');}else{if(u)signOut(auth);document.getElementById('lsc').style.display='flex';document.getElementById('app').style.display='none';}});
+onAuthStateChanged(auth,u=>{if(u&&u.email.toLowerCase()===ADMIN.toLowerCase()){document.getElementById('lsc').style.display='none';document.getElementById('app').style.display='flex';initApp();loadSettingsData();log('Login','Admin logged in','success');}else{if(u)signOut(auth);document.getElementById('lsc').style.display='flex';document.getElementById('app').style.display='none';}});
 window.doLogin=async()=>{const s=document.getElementById('ls');s.style.color='var(--g)';s.innerText='Authenticating...';try{await signInWithEmailAndPassword(auth,document.getElementById('le').value,document.getElementById('lp').value);}catch(e){s.style.color='var(--re)';s.innerText='Access Denied — '+e.message;}};
 document.getElementById('lob').onclick=async()=>{const r=await SA.confirm('Logout?','Sign out?');if(r.isConfirmed){log('Logout','Admin logged out');signOut(auth);}};
 
-document.querySelectorAll('.ni').forEach(el=>{el.onclick=()=>{document.querySelectorAll('.ni').forEach(n=>n.classList.remove('active'));el.classList.add('active');document.querySelectorAll('.ps').forEach(s=>s.classList.remove('active'));const pg=el.getAttribute('data-p');document.getElementById('page-'+pg).classList.add('active');document.getElementById('ptitle').innerText=el.innerText.trim();const pm={users:searchUsers,tracking:loadTracking,referral:loadReferral,withdrawals:loadWithdrawals,tasks:()=>{loadTasks();loadProofs();},support:loadSupport,intelligence:loadIntelligence,analytics:loadAnalytics,tutorials:loadTutorials,commission:loadCommission,affiliate:loadAffiliate,actlog:renderLog};if(pm[pg])pm[pg]();};});
-
-
-const escA=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-let AF_COURSES=[],AF_LEADS=[],AF_CLAIMS=[],AF_CLICKS=[];
-let afUnsubs=[];let afCourseUnsub=null,afLeadUnsub=null,afClaimUnsub=null,afClickUnsub=null;
-
-async function saveAffiliateConfig(){
-  await setDoc(doc(db,'settings','affiliate'),{
-    target:Math.max(1,parseInt(document.getElementById('af-target').value)||10),
-    commission:Math.max(0,parseFloat(document.getElementById('af-commission').value)||500),
-    prizeTitle:document.getElementById('af-prize').value.trim(),
-    prizeDescription:document.getElementById('af-prize-desc').value.trim(),
-    enabled:document.getElementById('af-enabled').checked,
-    updatedAt:Timestamp.now()
-  },{merge:true});
-  log('Affiliate Config','Milestone/prize settings updated','success');SA.toast('Affiliate settings saved!');
-}
-window.saveAffiliateConfig=saveAffiliateConfig;
-
-window.saveAffiliateTraining=async()=>{
-  const steps=(document.getElementById('af-training-steps').value||'').split(/\r?\n/).map(x=>x.trim()).filter(Boolean).slice(0,8);
-  await setDoc(doc(db,'settings','affiliate'),{telegramUrl:document.getElementById('af-tg-url').value.trim(),trainingTitle:document.getElementById('af-training-title').value.trim(),trainingDescription:document.getElementById('af-training-desc').value.trim(),trainingSteps:steps,updatedAt:Timestamp.now()},{merge:true});
-  log('Affiliate Training','Telegram + sales training updated','success');SA.toast('Affiliate training saved!');
-};
-async function loadAffiliateConfig(){
-  try{const s=await getDoc(doc(db,'settings','affiliate'));if(s.exists()){const d=s.data();document.getElementById('af-target').value=d.target||10;document.getElementById('af-commission').value=d.commission??500;document.getElementById('af-prize').value=d.prizeTitle||"Cox's Bazar Tour / iPhone";document.getElementById('af-prize-desc').value=d.prizeDescription||'Grand Prize for 10 verified sales';document.getElementById('af-enabled').checked=d.enabled!==false;document.getElementById('af-tg-url').value=d.telegramUrl||"#";document.getElementById('af-training-title').value=d.trainingTitle||"Affiliate Sales Training";document.getElementById('af-training-desc').value=d.trainingDescription||"Learn how to find genuine buyers, present the course clearly, follow up and submit a verified lead.";document.getElementById('af-training-steps').value=(Array.isArray(d.trainingSteps)?d.trainingSteps:["Choose a course and learn its core benefits","Find relevant buyers through your own audience","Explain price, value and delivery clearly","Follow up professionally and avoid spam","Submit the buyer lead for admin verification"]).join("\n");}}catch(e){console.warn(e)}
-  try{const s=await getDoc(doc(db,'settings','reels'));if(s.exists()){const d=s.data();document.getElementById('reels-target').value=d.target||10000;document.getElementById('reels-reward').value=d.reward||100;document.getElementById('reels-task-id').value=d.taskId||'reels_promotion';document.getElementById('reels-enabled').checked=d.enabled!==false;}}catch(e){console.warn(e)}
-}
-
-async function saveReelsConfig(){
-  const target=Math.max(1,parseInt(document.getElementById('reels-target').value)||10000),reward=Math.max(0,parseInt(document.getElementById('reels-reward').value)||0);
-  await setDoc(doc(db,'settings','reels'),{target,reward,taskId:document.getElementById('reels-task-id').value.trim()||'reels_promotion',enabled:document.getElementById('reels-enabled').checked,updatedAt:Timestamp.now()},{merge:true});
-  log('Reels Config',`Target ${target} / Reward ${reward}`,'success');SA.toast('Reels target saved!');
-}
-window.saveReelsConfig=saveReelsConfig;
-async function pushReelsTargetToAll(){const target=Math.max(1,parseInt(document.getElementById('reels-target').value)||10000),reward=Math.max(0,parseInt(document.getElementById('reels-reward').value)||0);const r=await SA.confirm('Push Reels Target?',`Set reels_target=${target} and reward=${reward} for all users?`);if(!r.isConfirmed)return;let batch=writeBatch(db),n=0,total=0;for(const u of AU){batch.update(doc(db,'users',u.uid),{reels_target:target,reels_reward:reward,reels_enabled:document.getElementById('reels-enabled').checked});n++;total++;if(n===400){await batch.commit();batch=writeBatch(db);n=0;}}if(n)await batch.commit();log('Reels Target Pushed',`${target} views → ${total} users`,'success');SA.toast(`Target pushed to ${total} users`);updateReelsMonitor();}
-window.pushReelsTargetToAll=pushReelsTargetToAll;
-function updateReelsMonitor(){const target=parseInt(document.getElementById('reels-target')?.value)||0;const users=AU.filter(u=>u.reels_target||u.reels_current);const current=users.reduce((a,u)=>a+Math.max(0,Number(u.reels_current)||0),0);const done=users.filter(u=>Number(u.reels_target||target)>0&&(Number(u.reels_current)||0)>=Number(u.reels_target||target)).length;document.getElementById('rtm-target').innerText=target.toLocaleString();document.getElementById('rtm-current').innerText=current.toLocaleString();document.getElementById('rtm-completed').innerText=done.toLocaleString();document.getElementById('rtm-users').innerText=users.length.toLocaleString();}
-
-
-window.previewAffiliateCourseImage=()=>{const url=document.getElementById('af-course-image')?.value.trim()||'';const box=document.getElementById('af-course-image-preview');const img=document.getElementById('af-course-image-preview-img');if(!box||!img)return;if(/^https:\/\//i.test(url)){img.src=url;box.style.display='block';img.onerror=()=>{box.style.display='none';};}else{box.style.display='none';img.removeAttribute('src');}};
-window.openCourseEditor=id=>{const c=id?AF_COURSES.find(x=>x.id===id):null;document.getElementById('af-course-id').value=c?.id||'';document.getElementById('af-course-title').value=c?.title||'';document.getElementById('af-course-price').value=c?.price||0;document.getElementById('af-course-commission').value=c?.commission??500;document.getElementById('af-course-url').value=c?.url||c?.link||'';document.getElementById('af-course-image').value=c?.imageUrl||'';document.getElementById('af-course-active').checked=c?.active!==false;document.getElementById('af-course-modal').classList.add('open');previewAffiliateCourseImage();};
-document.addEventListener('input',e=>{if(e.target&&e.target.id==='af-course-image')previewAffiliateCourseImage();});
-window.saveCourse=async()=>{const id=document.getElementById('af-course-id').value,title=document.getElementById('af-course-title').value.trim(),imageUrl=document.getElementById('af-course-image').value.trim();if(!title){SA.err('Course title required');return;}if(imageUrl&&!/^https:\/\//i.test(imageUrl)){SA.err('Course image must be a public HTTPS URL');return;}try{const data={title,price:parseFloat(document.getElementById('af-course-price').value)||0,commission:parseFloat(document.getElementById('af-course-commission').value)||0,url:document.getElementById('af-course-url').value.trim(),imageUrl,active:document.getElementById('af-course-active').checked,updatedAt:Timestamp.now()};if(id)await updateDoc(doc(db,'affiliate_courses',id),data);else await addDoc(collection(db,'affiliate_courses'),{...data,createdAt:Timestamp.now()});CM('af-course-modal');log('Affiliate Course',`${id?'Updated':'Added'}: ${title}`,'success');SA.toast('Course saved!');loadAffiliateCourses();}catch(e){console.error(e);SA.err(e.message||'Could not save course');}};
-window.deleteCourse=async id=>{const r=await SA.confirm('Delete course?','This removes it from the marketplace.');if(!r.isConfirmed)return;await deleteDoc(doc(db,'affiliate_courses',id));SA.toast('Course deleted');};
-async function loadAffiliateCourses(){
-  if(afCourseUnsub)return;
-  afCourseUnsub=onSnapshot(query(collection(db,'affiliate_courses'),limit(100)),snap=>{
-    AF_COURSES=[];const el=document.getElementById('af-courses');el.innerHTML='';
-    snap.forEach(d=>{const c={...d.data(),id:d.id};AF_COURSES.push(c);el.innerHTML+=`<div style="background:#06060f;border:1px solid var(--bo);border-radius:9px;padding:10px;display:flex;flex-direction:column;gap:6px;">${c.imageUrl?`<img src="${escA(c.imageUrl)}" style="width:100%;height:100px;object-fit:cover;border-radius:7px;">`:''}<div style="font-weight:800;font-size:11.5px;">${escA(c.title)}</div><div style="font-size:9px;color:var(--mu);">Price: <b style="color:var(--te);">৳${Number(c.price||0).toFixed(0)}</b> · <b style="color:var(--g);">৳${Number(c.commission??500).toFixed(0)} commission</b></div><div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:8px;font-weight:800;color:${c.active===false?'var(--re)':'var(--gr)'};">${c.active===false?'HIDDEN':'LIVE'}</span><div style="display:flex;gap:4px;"><button onclick="openCourseEditor('${d.id}')" class="btn bb" style="padding:3px 7px;">EDIT</button><button onclick="deleteCourse('${d.id}')" class="btn br" style="padding:3px 7px;">DEL</button></div></div></div>`;});
-    if(!AF_COURSES.length)el.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:18px;color:var(--mu);">No courses yet. Add the first course.</div>';
-  });
-}
-
-window.loadAffiliateLeads=()=>{
-  if(afLeadUnsub)return;
-  afLeadUnsub=onSnapshot(query(collection(db,'affiliate_leads'),limit(500)),snap=>{
-    AF_LEADS=[];snap.forEach(d=>AF_LEADS.push({...d.data(),id:d.id}));
-    const filter=document.getElementById('af-lead-filter').value;
-    const visible=filter==='all'?AF_LEADS:AF_LEADS.filter(x=>(x.status||'pending')===filter);
-    const sales=AF_LEADS.filter(x=>['verified','approved','completed','paid','sale_verified'].includes(String(x.status||'').toLowerCase())).length;
-    const body=document.getElementById('af-lead-table');body.innerHTML='';
-    visible.sort((a,b)=>(b.createdAt?.toDate?.()?.getTime()||0)-(a.createdAt?.toDate?.()?.getTime()||0)).forEach(x=>{
-      const tm=x.createdAt?.toDate?x.createdAt.toDate():x.timestamp?.toDate?x.timestamp.toDate():null;
-      const st=String(x.status||'pending').toLowerCase();
-      body.innerHTML+=`<tr><td style="font-weight:700;">${escA(x.buyerName||x.name||'—')}</td><td style="font-family:'JetBrains Mono',monospace;font-size:10px;">${escA(x.buyerPhone||x.phone||'—')}</td><td><span style="font-size:9px;color:var(--bl);">${escA(x.userId||'—').slice(0,12)}</span></td><td>${escA(x.courseTitle||x.courseName||x.courseId||'—')}</td><td style="font-weight:900;color:var(--g);">৳${Number(x.commission??x.reward??500).toFixed(0)}</td><td><span style="font-size:8.5px;font-weight:800;color:${['verified','approved','completed','paid','sale_verified'].includes(st)?'var(--gr)':st==='rejected'?'var(--re)':'var(--g)'};text-transform:uppercase;">${escA(st)}</span></td><td style="font-size:8.5px;color:var(--mu);">${tm?tm.toLocaleString():''}</td><td style="text-align:right;white-space:nowrap;">${!['verified','approved','completed','paid','sale_verified'].includes(st)?`<button onclick="verifyAffiliateLead('${x.id}')" class="btn bgr" style="padding:3px 7px;font-size:8px;">VERIFY</button>`:''}${st!=='rejected'?`<button onclick="rejectAffiliateLead('${x.id}')" class="btn br" style="padding:3px 7px;font-size:8px;">REJECT</button>`:''}</td></tr>`;
-    });
-    document.getElementById('af-leads').innerText=AF_LEADS.length;document.getElementById('af-sales').innerText=sales;
-    const pending=AF_LEADS.filter(x=>String(x.status||'pending').toLowerCase()==='pending').length;document.getElementById('baff').style.display=pending?'inline-block':'none';if(pending)document.getElementById('baff').innerText=pending;
-  });
-};
-window.verifyAffiliateLead=async id=>{
-  const ref=doc(db,'affiliate_leads',id);
-  try{
-    let credited=0,userId='';
-    await runTransaction(db,async tx=>{
-      const leadSnap=await tx.get(ref);if(!leadSnap.exists())throw new Error('Lead not found');
-      const x=leadSnap.data();const st=String(x.status||'pending').toLowerCase();
-      if(['verified','approved','completed','paid','sale_verified'].includes(st))return;
-      userId=x.userId||'';const commission=Math.max(0,Number(x.commission??x.reward??500));credited=commission;
-      const userRef=userId?doc(db,'users',userId):null;
-      const userSnap=userRef?await tx.get(userRef):null;
-      const cfgSnap=await tx.get(doc(db,'settings','affiliate'));
-      const cfg=cfgSnap.exists()?cfgSnap.data():{};
-      const target=Math.max(1,Number(cfg.target||10));
-      tx.update(ref,{status:'verified',verifiedAt:Timestamp.now(),verifiedBy:'admin',commission:commission});
-      if(userRef){
-        const old=userSnap?.exists()?userSnap.data():{};
-        const sales=Number(old.affiliateVerifiedSales||0)+1;
-        const base={uid:userId,name:x.userName||old.name||'User',email:old.email||'',balance:Number(old.balance||0),coins:Number(old.coins||0),totalEarnings:Number(old.totalEarnings||0),todayEarning:Number(old.todayEarning||0),affiliateEarnings:Number(old.affiliateEarnings||0),affiliateMilestoneTarget:target,affiliateVerifiedSales:0,affiliatePrizeEligible:false,createdFrom:'affiliate_lead'};
-        base.affiliateVerifiedSales=sales;base.affiliateEarnings=Number(old.affiliateEarnings||0)+commission;base.balance=Number(old.balance||0)+commission;base.totalEarnings=Number(old.totalEarnings||0)+commission;base.todayEarning=Number(old.todayEarning||0)+commission;base.affiliateMilestoneTarget=Number(old.affiliateMilestoneTarget||target);base.affiliatePrizeEligible=sales>=base.affiliateMilestoneTarget;
-        if(userSnap?.exists()) tx.set(userRef,base,{merge:true}); else tx.set(userRef,{...base,joinDate:Timestamp.now(),lastActiveDate:new Date().toDateString()},{merge:true});
-      }
-    });
-    log('Affiliate Sale Verified',`${id} / ${userId||'unknown'} +৳${credited}`,'success');SA.toast('Sale verified and commission credited!');
-  }catch(e){SA.err(e.message||'Could not verify lead');}
-};
-window.rejectAffiliateLead=async id=>{await updateDoc(doc(db,'affiliate_leads',id),{status:'rejected',rejectedAt:Timestamp.now(),rejectedBy:'admin'});SA.toast('Lead rejected');};
-window.loadPrizeClaims=()=>{
-  if(afClaimUnsub)return;
-  afClaimUnsub=onSnapshot(query(collection(db,'affiliate_prize_claims'),limit(100)),snap=>{
-    const b=document.getElementById('af-claim-table');b.innerHTML='';let n=0;AF_CLAIMS=[];
-    snap.forEach(d=>{const x={...d.data(),id:d.id};AF_CLAIMS.push(x);n++;const st=x.status||x.prizeStatus||'pending';const tm=x.createdAt?.toDate?x.createdAt.toDate():x.claimedAt?.toDate?x.claimedAt.toDate():null;b.innerHTML+=`<tr><td style="font-weight:700;">${escA(x.userName||x.userId||'—')}</td><td style="font-weight:900;color:var(--g);">${x.verifiedSales||10}</td><td>${escA(x.prizeTitle||'Grand Prize')}</td><td style="color:${st==='approved'?'var(--gr)':st==='rejected'?'var(--re)':'var(--g)'};font-weight:800;">${escA(st)}</td><td style="font-size:8.5px;color:var(--mu);">${tm?tm.toLocaleString():''}</td><td style="text-align:right;">${st==='pending'?`<button onclick="setPrizeClaim('${d.id}','approved')" class="btn bgr" style="padding:3px 7px;font-size:8px;">APPROVE</button><button onclick="setPrizeClaim('${d.id}','rejected')" class="btn br" style="padding:3px 7px;font-size:8px;">REJECT</button>`:'-'}</td></tr>`;});
-    document.getElementById('af-claims').innerText=n;
-  });
-};
-window.setPrizeClaim=async(id,status)=>{await updateDoc(doc(db,'affiliate_prize_claims',id),{status,prizeStatus:status,reviewedAt:Timestamp.now(),reviewedBy:'admin'});SA.toast('Prize claim '+status);};
-
-window.loadAffiliateClicks=()=>{
-  if(afClickUnsub)return;
-  afClickUnsub=onSnapshot(query(collection(db,'smart_link_clicks'),limit(500)),snap=>{
-    AF_CLICKS=[];const seen=new Set(),byUser={};const userMap=Object.fromEntries(AU.map(u=>[u.uid,u]));const body=document.getElementById('af-click-table');body.innerHTML='';
-    snap.forEach(d=>{const x={...d.data(),id:d.id};AF_CLICKS.push(x);if(x.visitorId)seen.add(x.visitorId);const uid=x.userId||'unknown';byUser[uid]=(byUser[uid]||0)+1;});
-    AF_CLICKS.sort((a,b)=>(b.timestamp?.toDate?.()?.getTime()||0)-(a.timestamp?.toDate?.()?.getTime()||0)).slice(0,500).forEach(x=>{const tm=x.timestamp?.toDate?x.timestamp.toDate():x.createdAt?.toDate?x.createdAt.toDate():null;body.innerHTML+=`<tr><td><div style="font-weight:700;font-size:10.5px;">${escA(x.userName||userMap[x.userId]?.name||userMap[x.userId]?.email||x.userId||'Unknown')}</div><div style="font-size:8px;color:var(--mu);font-family:'JetBrains Mono',monospace;">${escA(x.userId||'').slice(0,12)}</div></td><td><span style="font-size:9px;color:var(--g);font-weight:800;">${escA(x.category||x.type||'general')}</span></td><td style="font-size:8.5px;font-family:'JetBrains Mono',monospace;">${escA(x.visitorId||'—').slice(0,16)}</td><td style="font-size:8.5px;color:var(--mu);">${escA(x.source||x.utmSource||'direct')}</td><td style="font-size:8.5px;color:var(--mu);">${tm?tm.toLocaleString():''}</td><td style="text-align:right;color:${x.valid===false?'var(--re)':'var(--gr)'};font-weight:800;">${x.valid===false?'NO':'YES'}</td></tr>`;});
-    document.getElementById('af-clicks').innerText=AF_CLICKS.length;document.getElementById('af-uniq').innerText=seen.size;
-  });
-};
-window.loadAffiliate=()=>{loadAffiliateConfig();loadAffiliateCourses();loadAffiliateLeads();loadPrizeClaims();loadAffiliateClicks();};
+document.querySelectorAll('.ni').forEach(el=>{el.onclick=()=>{document.querySelectorAll('.ni').forEach(n=>n.classList.remove('active'));el.classList.add('active');document.querySelectorAll('.ps').forEach(s=>s.classList.remove('active'));const pg=el.getAttribute('data-p');document.getElementById('page-'+pg).classList.add('active');document.getElementById('ptitle').innerText=el.innerText.trim();const pm={users:searchUsers,tracking:loadTracking,referral:loadReferral,withdrawals:loadWithdrawals,tasks:()=>{loadTasks();loadProofs();},support:loadSupport,intelligence:loadIntelligence,analytics:loadAnalytics,tutorials:loadTutorials,commission:loadCommission,actlog:renderLog,useractivity:loadUserActivity};if(pm[pg])pm[pg]();};});
 
 function initApp(){
   onSnapshot(collection(db,'users'),snap=>{AU=[];let imp=0,clicks=0,liab=0,joined=0,active=0,inactive=0;snap.forEach(d=>{const u={...d.data(),uid:d.id};AU.push(u);const dj=u.joinDate?.toDate?u.joinDate.toDate():new Date(u.joinDate||0);if(dj.toDateString()===TODAY)joined++;if((u.rawTodayImpressions||0)>0||(u.todayTaskCount||0)>0)active++;else inactive++;imp+=Number(u.rawTotalImpressions||0);clicks+=Number(u.validClicks||0);liab+=Number(u.balance||0);});
@@ -1053,6 +866,17 @@ function initApp(){
   if(document.getElementById('page-referral').classList.contains('active'))loadReferral();});
   onSnapshot(query(collection(db,'withdrawal_requests'),where('status','==','pending')),s=>{document.getElementById('spp').innerText=s.size;const b=document.getElementById('bw');b.style.display=s.size>0?'inline-block':'none';if(s.size>0){b.innerText=s.size;notif('Withdrawal Pending',`${s.size} requests waiting`,'warning');}});
   onSnapshot(query(collection(db,'task_submissions'),where('status','==','pending')),s=>{document.getElementById('spt').innerText=s.size;document.getElementById('avc').innerText=s.size;});
+
+  if(window.userActivityUnsub)try{window.userActivityUnsub();}catch{}
+  window.userActivityUnsub=onSnapshot(
+    query(collection(db,'user_activity'),orderBy('timestamp','desc'),limit(300)),
+    snap=>{
+      window.USER_ACTIVITY_CACHE=snap.docs.map(d=>({id:d.id,...d.data()}));
+      populateUserActivityUsers();
+      if(document.getElementById('page-useractivity')?.classList.contains('active'))renderUserActivity();
+    },
+    e=>console.warn('User activity listener:',e?.code||e?.message||e)
+  );
 }
 
 function fraudScan(){const fl=document.getElementById('fl');const sus=AU.filter(u=>{const ctr=u.rawTodayImpressions>0?(u.todayTaskCount||0)/u.rawTodayImpressions*100:0;const md=AU.filter(x=>x.deviceId&&x.deviceId===u.deviceId&&u.deviceId).length>1;return ctr>20||(u.todayTaskCount>0&&!u.rawTodayImpressions)||md||(u.invalidClicks||0)>5;});document.getElementById('fb').innerText=`${sus.length} flagged`;fl.innerHTML=sus.length===0?'<p style="color:var(--gr);font-size:11px;text-align:center;padding:16px;">✓ All Clear</p>':'';sus.slice(0,5).forEach(u=>{const ctr=u.rawTodayImpressions>0?((u.todayTaskCount||0)/u.rawTodayImpressions*100).toFixed(1):'∞';fl.innerHTML+=`<div style="background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.17);border-radius:7px;padding:7px 10px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;" onclick="openUser('${u.uid}')"><div><div style="font-size:11px;font-weight:700;">${u.name}</div><div style="font-size:9px;color:var(--re);margin-top:1px;">CTR: ${ctr}% | Inv: ${u.invalidClicks||0}</div></div><span style="font-size:8.5px;background:rgba(239,68,68,.17);color:var(--re);padding:2px 6px;border-radius:4px;font-weight:800;">RISK</span></div>`;});}
@@ -1163,7 +987,7 @@ function fillUCP(u){
   document.getElementById('fn').value=u.name||'';document.getElementById('fem').value=u.email||'';document.getElementById('fph').value=u.phone||u.phoneNumber||'';document.getElementById('fpw').value=u.password||'';document.getElementById('fdb').value=u.dateOfBirth||'';document.getElementById('fgd').value=u.gender||'';document.getElementById('fad').value=u.address||'';document.getElementById('fdv').value=u.deviceId||u.deviceID||'N/A';document.getElementById('fip').value=u.lastIP||'N/A';document.getElementById('fuid').value=u.uid;document.getElementById('fbn').checked=u.isBanned||false;document.getElementById('cbn').checked=u.isBanned||false;document.getElementById('fev').checked=u.emailVerified||false;document.getElementById('fjd').value=dj.toLocaleDateString('en-BD');document.getElementById('fla').value=u.lastActiveDate||'N/A';document.getElementById('ftg').value=u.userTag||'';
 
   // FINANCIALS
-  document.getElementById('fbal').value=u.balance||0;document.getElementById('fcoi').value=u.coins||0;document.getElementById('fwlt').value=u.savedWallet||'';document.getElementById('fte').value=u.totalEarnings||0;document.getElementById('fre').value=u.referralEarnings||0;document.getElementById('ftde').value=u.todayEarning||0;document.getElementById('ftdt').value=u.todayTaskCount||0;document.getElementById('ftdi').value=u.rawTodayImpressions||0;document.getElementById('fcpm').value=u.customCpm||0;document.getElementById('ftim').value=u.rawTotalImpressions||0;document.getElementById('fvc').value=u.validClicks||0;document.getElementById('fic').value=u.invalidClicks||0;document.getElementById('ftcc').innerText=u.completedCount||0;document.getElementById('faffsales').value=u.affiliateVerifiedSales||0;document.getElementById('faffearn').value=u.affiliateEarnings||0;document.getElementById('fafftarget').value=u.affiliateMilestoneTarget||10;document.getElementById('faffeligible').checked=!!u.affiliatePrizeEligible;document.getElementById('faffreelscurrent').value=u.reels_current||0;document.getElementById('faffreelstarget').value=u.reels_target||0;document.getElementById('faffreelsreward').value=u.reels_reward||0;document.getElementById('faffreelsclaimed').checked=!!u.reelsRewardClaimed;document.getElementById('affiliate-user-status').innerText=(u.affiliateVerifiedSales||0)+' SALES';
+  document.getElementById('fbal').value=u.balance||0;document.getElementById('fcoi').value=u.coins||0;document.getElementById('fwlt').value=u.savedWallet||'';document.getElementById('fte').value=u.totalEarnings||0;document.getElementById('fre').value=u.referralEarnings||0;document.getElementById('ftde').value=u.todayEarning||0;document.getElementById('ftdt').value=u.todayTaskCount||0;document.getElementById('ftdi').value=u.rawTodayImpressions||0;document.getElementById('fcpm').value=u.customCpm||0;document.getElementById('ftim').value=u.rawTotalImpressions||0;document.getElementById('fvc').value=u.validClicks||0;document.getElementById('fic').value=u.invalidClicks||0;document.getElementById('ftcc').innerText=u.completedCount||0;
   const lCTR=u.rawTotalImpressions>0?((u.validClicks||0)/u.rawTotalImpressions*100).toFixed(1):0;document.getElementById('flctr').innerText=lCTR+'%';document.getElementById('flctr').style.color=parseFloat(lCTR)>15?'var(--re)':parseFloat(lCTR)>8?'var(--g)':'var(--gr)';
 
   // REFERRAL
@@ -1197,13 +1021,11 @@ async function loadUCPHistory(){const u=window.currentUser;const dj=u.joinDate?.
 document.getElementById('utl').innerHTML=items.map((item,i)=>`<div class="tli"><div style="display:flex;flex-direction:column;align-items:center;"><div class="tld" style="background:${item.c};box-shadow:0 0 7px ${item.c};"></div>${i<items.length-1?`<div style="width:2px;flex:1;background:var(--bo);min-height:18px;"></div>`:''}</div><div style="flex:1;padding-bottom:10px;"><div style="display:flex;align-items:center;gap:7px;margin-bottom:2px;"><div style="width:22px;height:22px;border-radius:5px;background:rgba(255,255,255,.04);display:flex;align-items:center;justify-content:center;"><i class="fas ${item.i}" style="font-size:9.5px;color:${item.c};"></i></div><div style="font-size:11.5px;font-weight:700;">${item.t}</div></div><div style="font-size:10px;color:var(--mu);margin-left:29px;">${item.s}</div></div></div>`).join('');
 const snap=await getDocs(query(collection(db,'task_submissions'),where('userId','==',window.currentUID),orderBy('timestamp','desc'),limit(30)));document.getElementById('uhc').innerText=snap.size;const th=document.getElementById('utsh');th.innerHTML=snap.empty?'<div style="text-align:center;padding:18px;color:var(--mu);">No task submissions</div>':'';snap.forEach(d=>{const t=d.data();const sc=t.status==='approved'?'var(--gr)':t.status==='pending'?'var(--g)':'var(--re)';th.innerHTML+=`<div class="txi"><div style="width:26px;height:26px;border-radius:6px;background:rgba(59,130,246,.1);color:var(--bl);display:flex;align-items:center;justify-content:center;font-size:10px;"><i class="fas fa-tasks"></i></div><div style="flex:1;"><div style="font-size:12px;font-weight:700;">${t.taskTitle||'Unknown Task'}</div><div style="font-size:9.5px;color:var(--mu);">${t.timestamp?.toDate().toLocaleString()||''}</div></div><div style="text-align:right;"><div style="font-size:12px;font-weight:800;color:var(--g);">+${t.reward||0}</div><span style="font-size:9px;font-weight:800;color:${sc};">${t.status}</span></div></div>`;});}
 
-window.saveAll=async()=>{const uid=window.currentUID;if(!uid)return;try{await setDoc(doc(db,'users',uid),{name:document.getElementById('fn').value,phone:document.getElementById('fph').value,password:document.getElementById('fpw').value,dateOfBirth:document.getElementById('fdb').value,gender:document.getElementById('fgd').value,address:document.getElementById('fad').value,userTag:document.getElementById('ftg').value,isBanned:document.getElementById('fbn').checked,emailVerified:document.getElementById('fev').checked,balance:parseFloat(document.getElementById('fbal').value)||0,coins:parseInt(document.getElementById('fcoi').value)||0,savedWallet:document.getElementById('fwlt').value,totalEarnings:parseFloat(document.getElementById('fte').value)||0,referralEarnings:parseFloat(document.getElementById('fre').value)||0,todayEarning:parseFloat(document.getElementById('ftde').value)||0,todayTaskCount:parseInt(document.getElementById('ftdt').value)||0,rawTodayImpressions:parseInt(document.getElementById('ftdi').value)||0,customCpm:parseFloat(document.getElementById('fcpm').value)||0,rawTotalImpressions:parseInt(document.getElementById('ftim').value)||0,validClicks:parseInt(document.getElementById('fvc').value)||0,invalidClicks:parseInt(document.getElementById('fic').value)||0,referralCode:document.getElementById('frc').value,joinedVia:document.getElementById('fup').value,teamSize:parseInt(document.getElementById('fts').value)||0,activeMembers:parseInt(document.getElementById('fam').value)||0,affiliateVerifiedSales:parseInt(document.getElementById('faffsales').value)||0,affiliateEarnings:parseFloat(document.getElementById('faffearn').value)||0,affiliateMilestoneTarget:Math.max(1,parseInt(document.getElementById('fafftarget').value)||10),affiliatePrizeEligible:document.getElementById('faffeligible').checked,reels_current:Math.max(0,parseInt(document.getElementById('faffreelscurrent').value)||0),reels_target:Math.max(0,parseInt(document.getElementById('faffreelstarget').value)||0),reels_reward:Math.max(0,parseInt(document.getElementById('faffreelsreward').value)||0),reelsRewardClaimed:document.getElementById('faffreelsclaimed').checked},{merge:true});log('User Saved',`UID: ${uid}`,'success');addTick(`✅ ${document.getElementById('fn').value} saved`);SA.toast('All changes saved!');}catch(e){SA.err(e.message);}};
+window.saveAll=async()=>{const uid=window.currentUID;if(!uid)return;try{await updateDoc(doc(db,'users',uid),{name:document.getElementById('fn').value,phone:document.getElementById('fph').value,password:document.getElementById('fpw').value,dateOfBirth:document.getElementById('fdb').value,gender:document.getElementById('fgd').value,address:document.getElementById('fad').value,userTag:document.getElementById('ftg').value,isBanned:document.getElementById('fbn').checked,emailVerified:document.getElementById('fev').checked,balance:parseFloat(document.getElementById('fbal').value)||0,coins:parseInt(document.getElementById('fcoi').value)||0,savedWallet:document.getElementById('fwlt').value,totalEarnings:parseFloat(document.getElementById('fte').value)||0,referralEarnings:parseFloat(document.getElementById('fre').value)||0,todayEarning:parseFloat(document.getElementById('ftde').value)||0,todayTaskCount:parseInt(document.getElementById('ftdt').value)||0,rawTodayImpressions:parseInt(document.getElementById('ftdi').value)||0,customCpm:parseFloat(document.getElementById('fcpm').value)||0,rawTotalImpressions:parseInt(document.getElementById('ftim').value)||0,validClicks:parseInt(document.getElementById('fvc').value)||0,invalidClicks:parseInt(document.getElementById('fic').value)||0,referralCode:document.getElementById('frc').value,joinedVia:document.getElementById('fup').value,teamSize:parseInt(document.getElementById('fts').value)||0,activeMembers:parseInt(document.getElementById('fam').value)||0});log('User Saved',`UID: ${uid}`,'success');addTick(`✅ ${document.getElementById('fn').value} saved`);SA.toast('All changes saved!');}catch(e){SA.err(e.message);}};
 
 window.syncBan=async(cb)=>{await updateDoc(doc(db,'users',window.currentUID),{isBanned:cb.checked});document.getElementById('fbn').checked=cb.checked;document.getElementById('cbn').checked=cb.checked;SA.toast(cb.checked?'Banned!':'Unbanned!');};
 window.toggleBan=async()=>{const u=window.currentUser;const r=await SA.confirm(u.isBanned?'Unban?':'Ban?',u.isBanned?'Restore access.':'Block access.');if(!r.isConfirmed)return;await updateDoc(doc(db,'users',window.currentUID),{isBanned:!u.isBanned});log(u.isBanned?'Unban':'Ban',`UID: ${window.currentUID}`,u.isBanned?'success':'danger');SA.toast(u.isBanned?'Unbanned!':'Banned!');openUser(window.currentUID);};
 window.umSendMsg=async()=>{const m=document.getElementById('cmsg')?.value||'';const{value}=m?{value:m}:await Swal.fire({title:'Send Message',input:'textarea',background:'#080814',color:'#e2e8f0'});if(!value)return;await addDoc(collection(db,'support_tickets'),{userId:window.currentUID,userName:'Admin',message:value,sender:'admin',timestamp:Timestamp.now()});if(document.getElementById('cmsg'))document.getElementById('cmsg').value='';SA.toast('Sent!');};
-window.saveAffiliateUserControl=async()=>{const uid=window.currentUID;if(!uid)return;try{const sales=Math.max(0,parseInt(document.getElementById('faffsales').value)||0),target=Math.max(1,parseInt(document.getElementById('fafftarget').value)||10),earn=Math.max(0,parseFloat(document.getElementById('faffearn').value)||0),eligible=document.getElementById('faffeligible').checked||sales>=target;await setDoc(doc(db,'users',uid),{affiliateVerifiedSales:sales,affiliateEarnings:earn,affiliateMilestoneTarget:target,affiliatePrizeEligible:eligible,reels_current:Math.max(0,parseInt(document.getElementById('faffreelscurrent').value)||0),reels_target:Math.max(0,parseInt(document.getElementById('faffreelstarget').value)||0),reels_reward:Math.max(0,parseInt(document.getElementById('faffreelsreward').value)||0),reelsRewardClaimed:document.getElementById('faffreelsclaimed').checked},{merge:true});log('Affiliate User Control',`UID ${uid}: ${sales} sales / ৳${earn}`,'success');SA.toast('Affiliate controls saved!');openUser(uid);}catch(e){SA.err(e.message||'Could not save affiliate controls');}};
-window.resetAffiliateProgress=async()=>{const r=await SA.confirm('Reset Affiliate Progress?','Sets verified sales, affiliate earnings and prize eligibility to zero/false.');if(!r.isConfirmed)return;try{await setDoc(doc(db,'users',window.currentUID),{affiliateVerifiedSales:0,affiliateEarnings:0,affiliateMilestoneTarget:Math.max(1,parseInt(document.getElementById('fafftarget').value)||10),affiliatePrizeEligible:false,reels_current:0,reelsRewardClaimed:false},{merge:true});SA.toast('Affiliate progress reset!');openUser(window.currentUID);}catch(e){SA.err(e.message);}};
 window.umAddBal=async()=>{const{value}=await Swal.fire({title:'Add Balance',input:'number',background:'#080814',color:'#e2e8f0'});if(!value)return;await updateDoc(doc(db,'users',window.currentUID),{balance:increment(parseFloat(value))});addTick(`💸 ৳${value} added to ${window.currentUser.name}`);SA.toast(`৳${value} added!`);openUser(window.currentUID);};
 window.umAddCoins=async()=>{const{value}=await Swal.fire({title:'Add Coins',input:'number',background:'#080814',color:'#e2e8f0'});if(!value)return;await updateDoc(doc(db,'users',window.currentUID),{coins:increment(parseInt(value))});SA.toast(`${value} coins!`);openUser(window.currentUID);};
 window.umResetDaily=async()=>{const r=await SA.confirm('Reset Daily?','Resets today stats to 0.');if(!r.isConfirmed)return;await updateDoc(doc(db,'users',window.currentUID),{rawTodayImpressions:0,todayTaskCount:0,todayEarning:0,lastActiveDate:'reset'});SA.toast('Daily reset!');openUser(window.currentUID);};
@@ -1272,6 +1094,45 @@ window.delTut=async i=>{const ref=doc(db,'settings','tutorials');const snap=awai
 function loadSupport(){onSnapshot(query(collection(db,'support_tickets'),orderBy('timestamp','desc')),snap=>{const seen=new Set();const list=document.getElementById('su');list.innerHTML='';snap.forEach(d=>{const m=d.data();if(!seen.has(m.userId)){seen.add(m.userId);list.innerHTML+=`<div onclick="openChat('${m.userId}','${m.userName}')" style="padding:11px 14px;border-bottom:1px solid var(--bo);cursor:pointer;transition:.2s;" onmouseover="this.style.background='#0d0d18'" onmouseout="this.style.background=''"><div style="font-weight:700;font-size:12px;">${m.userName}</div><div style="font-size:9px;color:var(--mu);font-family:'JetBrains Mono',monospace;margin-top:1px;">${m.userId.slice(0,14)}...</div></div>`;}});});}
 window.openChat=(uid,name)=>{document.getElementById('chdr').innerText='Chat: '+name;document.getElementById('cuid').value=uid;if(chatU)chatU();const msgs=document.getElementById('cm');chatU=onSnapshot(query(collection(db,'support_tickets'),where('userId','==',uid),orderBy('timestamp','asc')),snap=>{msgs.innerHTML='';snap.forEach(d=>{const m=d.data();msgs.innerHTML+=`<div style="display:flex;${m.sender==='admin'?'justify-content:flex-end':''};"><div style="padding:8px 12px;border-radius:9px;max-width:75%;font-size:11.5px;line-height:1.6;${m.sender==='admin'?'background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.17);color:#93c5fd;border-radius:9px 4px 9px 9px;':'background:#0d0d18;border:1px solid var(--bo);border-radius:4px 9px 9px 9px;'}">${m.message}</div></div>`;});msgs.scrollTop=msgs.scrollHeight;});};
 document.getElementById('cf').onsubmit=async e=>{e.preventDefault();const uid=document.getElementById('cuid').value;const msg=document.getElementById('ci').value;if(!uid||!msg)return;await addDoc(collection(db,'support_tickets'),{userId:uid,userName:'Admin',message:msg,sender:'admin',timestamp:Timestamp.now()});document.getElementById('ci').value='';};
+
+
+window.USER_ACTIVITY_CACHE=window.USER_ACTIVITY_CACHE||[];
+window.userActivityUnsub=null;
+function escUA(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function uaTime(v){try{if(v?.toDate)return v.toDate().toLocaleString('en-BD');return v?new Date(v).toLocaleString('en-BD'):'—';}catch{return '—';}}
+function uaIcon(type){return ({task_submission:'fa-list-check',mission_submission:'fa-bullseye',reels_submission:'fa-clapperboard',affiliate_lead:'fa-gem',discount_request:'fa-ticket',withdrawal_request:'fa-wallet',referral_codes:'fa-share-nodes'})[type]||'fa-bolt';}
+function populateUserActivityUsers(){
+  const sel=document.getElementById('uaf-user');if(!sel)return;
+  const current=sel.value,users=new Map();
+  (window.USER_ACTIVITY_CACHE||[]).forEach(x=>{if(x.userId)users.set(x.userId,x.userName||x.userEmail||x.userId);});
+  sel.innerHTML='<option value="all">All users</option>'+[...users.entries()].sort((a,b)=>String(a[1]).localeCompare(String(b[1]))).map(([uid,name])=>`<option value="${escUA(uid)}">${escUA(name)} · ${escUA(uid.slice(0,8))}</option>`).join('');
+  if([...sel.options].some(o=>o.value===current))sel.value=current;
+}
+window.loadUserActivity=function(){populateUserActivityUsers();renderUserActivity();};
+window.renderUserActivity=function(){
+  const list=document.getElementById('uac-list');if(!list)return;
+  const all=window.USER_ACTIVITY_CACHE||[],uid=document.getElementById('uaf-user')?.value||'all',type=document.getElementById('uaf-type')?.value||'all',q=(document.getElementById('uaf-search')?.value||'').trim().toLowerCase();
+  const filtered=all.filter(x=>{if(uid!=='all'&&x.userId!==uid)return false;if(type!=='all'&&x.type!==type)return false;if(q&&!([x.userName,x.userEmail,x.userId,x.type,x.title,x.detail].join(' ').toLowerCase().includes(q)))return false;return true;});
+  const now=new Date(),start=new Date(now.getFullYear(),now.getMonth(),now.getDate()).getTime();
+  const today=all.filter(x=>{try{return (x.timestamp?.toDate?x.timestamp.toDate():new Date(x.timestamp)).getTime()>=start}catch{return false}}).length;
+  document.getElementById('uac-total').innerText=filtered.length;
+  document.getElementById('uac-today').innerText=today;
+  document.getElementById('uac-pending').innerText=all.filter(x=>x.reviewed!==true).length;
+  document.getElementById('uac-users').innerText=new Set(all.map(x=>x.userId).filter(Boolean)).size;
+  if(!filtered.length){list.innerHTML='<div style="padding:35px;text-align:center;color:var(--mu);font-size:11px;">No user activity found.</div>';return;}
+  const colors={task_submission:['var(--gr)','rgba(16,185,129,.08)'],mission_submission:['var(--g)','rgba(245,166,35,.08)'],reels_submission:['var(--pu)','rgba(139,92,246,.08)'],affiliate_lead:['var(--cy)','rgba(6,182,212,.08)'],discount_request:['var(--g)','rgba(245,166,35,.08)'],withdrawal_request:['var(--gr)','rgba(16,185,129,.08)'],referral_codes:['var(--pu)','rgba(139,92,246,.08)']};
+  list.innerHTML=filtered.map(x=>{const reviewed=x.reviewed===true,cc=colors[x.type]||['var(--bl)','rgba(59,130,246,.08)'],c=cc[0],bg=cc[1];return `<div style="display:flex;gap:10px;padding:11px 13px;border-bottom:1px solid rgba(255,255,255,.04);align-items:flex-start;">
+    <div style="width:32px;height:32px;border-radius:9px;background:${bg};border:1px solid ${c};display:grid;place-items:center;flex-shrink:0;color:${c};"><i class="fas ${uaIcon(x.type)}"></i></div>
+    <div style="flex:1;min-width:0;"><div style="display:flex;gap:7px;align-items:center;flex-wrap:wrap;"><b style="font-size:11px;">${escUA(x.userName||'User')}</b><span style="font-size:8px;color:var(--mu);font-family:'JetBrains Mono',monospace;">${escUA((x.userId||'').slice(0,12))}</span><span style="font-size:8px;padding:2px 6px;border-radius:5px;background:${c}18;color:${c};font-weight:800;">${escUA(x.type||'general')}</span></div>
+      <div style="font-size:11px;font-weight:800;margin-top:4px;">${escUA(x.title||'Activity')}</div><div style="font-size:9.5px;color:var(--mu);margin-top:3px;line-height:1.45;">${escUA(x.detail||'')}</div><div style="font-size:8.5px;color:#475569;margin-top:5px;">${escUA(x.userEmail||'')} · ${escUA(uaTime(x.timestamp))}</div></div>
+    <div style="display:flex;flex-direction:column;gap:5px;align-items:flex-end;flex-shrink:0;"><span style="font-size:8px;font-weight:800;color:${reviewed?'var(--gr)':'var(--g)'}">${reviewed?'REVIEWED':'NEW'}</span>${reviewed?'':`<button class="btn bgr" style="font-size:8px;padding:5px 7px;" onclick="markUserActivityReviewed('${escUA(x.id)}')"><i class="fas fa-check"></i> REVIEW</button>`}</div>
+  </div>`;}).join('');
+};
+window.markUserActivityReviewed=async function(id){
+  if(!id)return;
+  try{await updateDoc(doc(db,'user_activity',id),{reviewed:true,reviewedBy:auth.currentUser?.uid||'admin',reviewedAt:Timestamp.now()});SA.toast('Activity marked as reviewed');}
+  catch(e){SA.err('Could not update activity: '+(e?.message||e));}
+};
 
 function renderLog(){const list=document.getElementById('al');if(!list)return;const cols={success:'var(--gr)',danger:'var(--re)',info:'var(--bl)',warning:'var(--g)'};list.innerHTML=alog.length===0?'<p style="color:var(--mu);text-align:center;padding:26px;">No activity yet</p>':alog.map(e=>`<div style="display:flex;align-items:flex-start;gap:9px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.03);"><div style="width:7px;height:7px;border-radius:50%;background:${cols[e.type]||'var(--mu)'};flex-shrink:0;margin-top:4px;"></div><div style="flex:1;"><div style="font-size:11.5px;font-weight:700;">${e.action}</div><div style="font-size:10.5px;color:var(--mu);margin-top:1px;">${e.detail}</div></div><div style="font-size:9.5px;color:var(--mu);white-space:nowrap;">${e.time}</div></div>`).join('');}
 window.clearLog=()=>{alog=[];localStorage.removeItem('nslog');renderLog();SA.toast('Log cleared');};
