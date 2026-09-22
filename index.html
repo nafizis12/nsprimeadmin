@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NS PRIME — AI Admin OS v14 ULTIMATE</title>
+<meta name="nsp-version" content="NS PRIME ADMIN v16 — Traffic + User Activity + Security">
+<title>NS PRIME — AI Admin OS v16 TRAFFIC CONTROL</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
@@ -148,6 +149,22 @@ tr:hover td{background:rgba(255,255,255,.015);}
 .ba-p{background:rgba(139,92,246,.18);color:var(--pu);border:1px solid rgba(139,92,246,.3);}
 .ba-b{background:rgba(59,130,246,.18);color:var(--bl);border:1px solid rgba(59,130,246,.3);}
 .ba-m{background:rgba(100,116,139,.18);color:var(--mu);border:1px solid rgba(100,116,139,.3);}
+
+/* V16 TRAFFIC DASHBOARD */
+.td-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
+.td-card{background:#06060f;border:1px solid var(--bo);border-radius:9px;padding:11px;min-height:74px}
+.td-card .v{font-family:'Syne',sans-serif;font-size:21px;font-weight:900;margin-top:4px}
+.td-card .s{font-size:8px;color:var(--mu);margin-top:2px}
+.td-green{border-top:2px solid var(--gr)}.td-blue{border-top:2px solid var(--bl)}.td-cyan{border-top:2px solid var(--cy)}.td-purple{border-top:2px solid var(--pu)}.td-gold{border-top:2px solid var(--g)}
+.td-two{display:grid;grid-template-columns:1.35fr .65fr;gap:12px;margin-bottom:12px}
+.td-list{max-height:330px;overflow:auto}
+.td-row{display:flex;gap:10px;align-items:center;padding:9px 11px;border-bottom:1px solid rgba(255,255,255,.035)}
+.td-row:last-child{border-bottom:0}.td-row:hover{background:rgba(255,255,255,.018)}
+.td-avatar{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;background:rgba(59,130,246,.10);color:var(--bl);flex-shrink:0;font-weight:900;font-size:11px}
+.td-muted{font-size:8.5px;color:var(--mu)}
+.td-pill{font-size:8px;padding:3px 6px;border-radius:5px;font-weight:800;white-space:nowrap}
+@media(max-width:1000px){.td-grid{grid-template-columns:repeat(2,1fr)}.td-two{grid-template-columns:1fr}}
+@media(max-width:650px){.td-grid{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
@@ -168,7 +185,7 @@ tr:hover td{background:rgba(255,255,255,.015);}
   <div style="background:rgba(8,8,18,.97);border:1px solid var(--bo);border-radius:20px;padding:36px;width:360px;text-align:center;box-shadow:0 0 60px rgba(245,166,35,.12);">
     <div class="lb" style="margin:0 auto 13px;width:52px;height:52px;font-size:24px;border-radius:13px;"></div>
     <h1 style="font-family:'Syne',sans-serif;font-weight:900;font-size:23px;letter-spacing:3px;">NS <span style="color:var(--g);">PRIME</span></h1>
-    <p style="font-size:9px;color:var(--mu);letter-spacing:4px;text-transform:uppercase;margin:5px 0 24px;">AI Admin OS v14 ULTIMATE</p>
+    <p style="font-size:9px;color:var(--mu);letter-spacing:4px;text-transform:uppercase;margin:5px 0 24px;">AI Admin OS v16 TRAFFIC CONTROL</p>
     <div style="display:flex;flex-direction:column;gap:10px;">
       <input type="email" id="le" class="inp" style="padding:12px;" placeholder="Admin Email">
       <input type="password" id="lp" class="inp" style="padding:12px;" placeholder="Password">
@@ -211,6 +228,7 @@ tr:hover td{background:rgba(255,255,255,.015);}
     <div class="ni" data-p="support"><i class="fas fa-headset" style="width:16px;text-align:center;"></i> Support</div>
     <div class="ni" data-p="actlog"><i class="fas fa-history" style="width:16px;text-align:center;color:var(--pu);"></i> Activity Log</div>
     <div class="ni" data-p="useractivity"><i class="fas fa-user-clock" style="width:16px;text-align:center;color:var(--cy);"></i> User Activity</div>
+    <div class="ni" data-p="trafficsecurity"><i class="fas fa-shield-halved" style="width:16px;text-align:center;color:var(--re);"></i> Traffic & Security</div>
     <div class="ni" data-p="settings"><i class="fas fa-cogs" style="width:16px;text-align:center;"></i> Settings</div>
   </nav>
   <div style="padding:10px;border-top:1px solid var(--bo);">
@@ -255,6 +273,34 @@ tr:hover td{background:rgba(255,255,255,.015);}
         <div class="gl" style="padding:12px;"><span class="lbl r">Pending Pays</span><div style="font-size:18px;font-weight:900;color:var(--re);" id="spp">0</div></div>
         <div class="gl" style="padding:12px;border-color:rgba(245,166,35,.17);"><span class="lbl o">Total Liability</span><div style="font-size:18px;font-weight:900;color:var(--g);">৳<span id="sli">0</span></div></div>
         <div class="gl" style="padding:12px;border-color:rgba(16,185,129,.17);"><span class="lbl g">Est. Revenue</span><div style="font-size:18px;font-weight:900;color:var(--gr);">৳<span id="srv">0</span></div></div>
+      </div>
+
+      <!-- V16 TRAFFIC + VISITOR DASHBOARD -->
+      <div class="gl" style="border-top:2px solid var(--cy);padding:13px;margin-bottom:14px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap;">
+          <div><h4 style="font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:2px;color:var(--cy);"><i class="fas fa-satellite-dish"></i> Traffic Control Dashboard</h4><p style="font-size:9px;color:var(--mu);margin-top:3px;">Page views, Continue events, unique visitors, recent visitor activity and landing-page status.</p></div>
+          <button onclick="loadTrafficDashboard()" class="btn bcy" style="padding:6px 10px;font-size:8.5px;"><i class="fas fa-rotate"></i> REFRESH</button>
+        </div>
+        <div class="td-grid">
+          <div class="td-card td-cyan"><div class="lbl" style="color:var(--cy)">TOTAL ACTIVITY</div><div class="v" id="td-total">0</div><div class="s">gateway + visitor events</div></div>
+          <div class="td-card td-blue"><div class="lbl" style="color:var(--bl)">PAGE VIEWS</div><div class="v" id="td-views">0</div><div class="s">landing-page views</div></div>
+          <div class="td-card td-green"><div class="lbl" style="color:var(--gr)">CONTINUE EVENTS</div><div class="v" id="td-continue">0</div><div class="s">visitor continue actions</div></div>
+          <div class="td-card td-purple"><div class="lbl" style="color:var(--pu)">UNIQUE USERS</div><div class="v" id="td-unique">0</div><div class="s">unique user / visitor IDs</div></div>
+          <div class="td-card td-gold"><div class="lbl" style="color:var(--g)">RECENT VISITORS</div><div class="v" id="td-recent">0</div><div class="s">latest visitor events loaded</div></div>
+          <div class="td-card td-green"><div class="lbl" style="color:var(--gr)">VALID CLICKS</div><div class="v" id="td-valid">0</div><div class="s">from user records</div></div>
+          <div class="td-card td-blue"><div class="lbl" style="color:var(--bl)">ACTIVE USERS</div><div class="v" id="td-active">0</div><div class="s">active today</div></div>
+          <div class="td-card td-cyan"><div class="lbl" style="color:var(--cy)">LANDING CONFIG</div><div class="v" id="td-config" style="font-size:15px">CHECKING</div><div class="s" id="td-config-sub">gateway + pages</div></div>
+        </div>
+        <div class="td-two">
+          <div style="background:#050508;border:1px solid var(--bo);border-radius:9px;overflow:hidden;">
+            <div style="padding:9px 11px;border-bottom:1px solid var(--bo);display:flex;justify-content:space-between;align-items:center;"><span style="font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:1.5px;color:var(--te);">Recent Visitor Activity</span><span id="td-last-update" class="td-muted">—</span></div>
+            <div id="td-activity-list" class="td-list"><div style="padding:24px;text-align:center;color:var(--mu);font-size:10px;">Loading…</div></div>
+          </div>
+          <div style="background:#050508;border:1px solid var(--bo);border-radius:9px;overflow:hidden;">
+            <div style="padding:9px 11px;border-bottom:1px solid var(--bo);"><span style="font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:1.5px;color:var(--te);">Landing-page Configuration</span></div>
+            <div id="td-config-list" style="padding:10px;display:flex;flex-direction:column;gap:7px;"><div style="padding:18px;text-align:center;color:var(--mu);font-size:10px;">Checking…</div></div>
+          </div>
+        </div>
       </div>
       <div id="ca-area" style="display:none;margin-bottom:14px;"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;"><h4 style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--gr);display:flex;align-items:center;gap:5px;"><i class="fas fa-bell"></i> Pending Commissions</h4><button onclick="approveAll()" class="btn bgr" style="padding:4px 12px;font-size:9px;">APPROVE ALL</button></div><div id="ca-list" style="display:flex;flex-direction:column;gap:5px;"></div></div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:13px;">
@@ -457,6 +503,27 @@ tr:hover td{background:rgba(255,255,255,.015);}
         </div>
         <div style="padding:12px;border-bottom:1px solid var(--bo);"><input id="uaf-search" class="inp" style="width:100%;padding:9px 11px;font-size:10px;" placeholder="Search by user name, email, UID, activity or detail..." oninput="renderUserActivity()"></div>
         <div id="uac-list" style="max-height:68vh;overflow-y:auto;"></div>
+      </div>
+    </div>
+
+    <!-- TRAFFIC + SECURITY -->
+    <div class="ps" id="page-trafficsecurity">
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-bottom:12px;">
+        <div class="gl" style="padding:13px;border-top:2px solid var(--cy);"><div class="lbl" style="color:var(--cy)">SMART-LINK EVENTS</div><div id="ts-clicks" style="font-size:24px;font-weight:900;margin-top:5px">0</div></div>
+        <div class="gl" style="padding:13px;border-top:2px solid var(--pu);"><div class="lbl" style="color:var(--pu)">USER EVENTS</div><div id="ts-activity" style="font-size:24px;font-weight:900;margin-top:5px">0</div></div>
+        <div class="gl" style="padding:13px;border-top:2px solid var(--re);"><div class="lbl" style="color:var(--re)">SECURITY EVENTS</div><div id="ts-security" style="font-size:24px;font-weight:900;margin-top:5px">0</div></div>
+        <div class="gl" style="padding:13px;border-top:2px solid var(--g);"><div class="lbl" style="color:var(--g)">UNREVIEWED</div><div id="ts-unreviewed" style="font-size:24px;font-weight:900;margin-top:5px">0</div></div>
+      </div>
+      <div class="gl" style="padding:0;overflow:hidden;margin-bottom:12px;">
+        <div style="padding:13px 15px;border-bottom:1px solid var(--bo);display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;">
+          <div><h3 style="font-weight:900;font-size:13px;color:var(--re);text-transform:uppercase;letter-spacing:1px;"><i class="fas fa-shield-halved"></i> Traffic & Security Monitor</h3><p style="font-size:9px;color:var(--mu);margin-top:3px;">Live client-side telemetry from smart links and signed-in member activity.</p></div>
+          <button class="btn bb" style="font-size:9px;" onclick="loadTrafficSecurity()"><i class="fas fa-rotate"></i> REFRESH</button>
+        </div>
+        <div style="padding:11px 14px;border-bottom:1px solid var(--bo);display:flex;gap:7px;flex-wrap:wrap;">
+          <input id="ts-search" class="inp" style="max-width:300px;padding:8px 10px;font-size:10px;" placeholder="Search UID, category, source, event..." oninput="renderTrafficSecurity()">
+          <select id="ts-kind" class="inp" style="width:150px;padding:8px 10px;font-size:10px;" onchange="renderTrafficSecurity()"><option value="all">All events</option><option value="click">Smart links</option><option value="activity">User activity</option><option value="security">Security</option></select>
+        </div>
+        <div id="ts-list" style="max-height:62vh;overflow:auto;"></div>
       </div>
     </div>
 
@@ -856,14 +923,16 @@ onAuthStateChanged(auth,u=>{if(u&&u.email.toLowerCase()===ADMIN.toLowerCase()){d
 window.doLogin=async()=>{const s=document.getElementById('ls');s.style.color='var(--g)';s.innerText='Authenticating...';try{await signInWithEmailAndPassword(auth,document.getElementById('le').value,document.getElementById('lp').value);}catch(e){s.style.color='var(--re)';s.innerText='Access Denied — '+e.message;}};
 document.getElementById('lob').onclick=async()=>{const r=await SA.confirm('Logout?','Sign out?');if(r.isConfirmed){log('Logout','Admin logged out');signOut(auth);}};
 
-document.querySelectorAll('.ni').forEach(el=>{el.onclick=()=>{document.querySelectorAll('.ni').forEach(n=>n.classList.remove('active'));el.classList.add('active');document.querySelectorAll('.ps').forEach(s=>s.classList.remove('active'));const pg=el.getAttribute('data-p');document.getElementById('page-'+pg).classList.add('active');document.getElementById('ptitle').innerText=el.innerText.trim();const pm={users:searchUsers,tracking:loadTracking,referral:loadReferral,withdrawals:loadWithdrawals,tasks:()=>{loadTasks();loadProofs();},support:loadSupport,intelligence:loadIntelligence,analytics:loadAnalytics,tutorials:loadTutorials,commission:loadCommission,actlog:renderLog,useractivity:loadUserActivity};if(pm[pg])pm[pg]();};});
+document.querySelectorAll('.ni').forEach(el=>{el.onclick=()=>{document.querySelectorAll('.ni').forEach(n=>n.classList.remove('active'));el.classList.add('active');document.querySelectorAll('.ps').forEach(s=>s.classList.remove('active'));const pg=el.getAttribute('data-p');document.getElementById('page-'+pg).classList.add('active');document.getElementById('ptitle').innerText=el.innerText.trim();const pm={users:searchUsers,tracking:loadTracking,referral:loadReferral,withdrawals:loadWithdrawals,tasks:()=>{loadTasks();loadProofs();},support:loadSupport,intelligence:loadIntelligence,analytics:loadAnalytics,tutorials:loadTutorials,commission:loadCommission,actlog:renderLog,useractivity:loadUserActivity,trafficsecurity:loadTrafficSecurity};if(pm[pg])pm[pg]();};});
 
 function initApp(){
   onSnapshot(collection(db,'users'),snap=>{AU=[];let imp=0,clicks=0,liab=0,joined=0,active=0,inactive=0;snap.forEach(d=>{const u={...d.data(),uid:d.id};AU.push(u);const dj=u.joinDate?.toDate?u.joinDate.toDate():new Date(u.joinDate||0);if(dj.toDateString()===TODAY)joined++;if((u.rawTodayImpressions||0)>0||(u.todayTaskCount||0)>0)active++;else inactive++;imp+=Number(u.rawTotalImpressions||0);clicks+=Number(u.validClicks||0);liab+=Number(u.balance||0);});
   document.getElementById('st').innerText=snap.size;document.getElementById('sa').innerText=active;document.getElementById('si').innerText=inactive;document.getElementById('sn').innerText=joined;document.getElementById('sim').innerText=imp.toLocaleString();document.getElementById('scl').innerText=clicks.toLocaleString();document.getElementById('sli').innerText=liab.toFixed(0);document.getElementById('srv').innerText=((imp*0.05)+(clicks*0.10)).toFixed(0);document.getElementById('sol').innerText=active;buildDChart();fraudScan();detectComm();
   if(document.getElementById('page-users').classList.contains('active'))searchUsers();
   if(document.getElementById('page-tracking').classList.contains('active'))loadTracking();
-  if(document.getElementById('page-referral').classList.contains('active'))loadReferral();});
+  if(document.getElementById('page-referral').classList.contains('active'))loadReferral();
+  loadTrafficDashboard();
+  });
   onSnapshot(query(collection(db,'withdrawal_requests'),where('status','==','pending')),s=>{document.getElementById('spp').innerText=s.size;const b=document.getElementById('bw');b.style.display=s.size>0?'inline-block':'none';if(s.size>0){b.innerText=s.size;notif('Withdrawal Pending',`${s.size} requests waiting`,'warning');}});
   onSnapshot(query(collection(db,'task_submissions'),where('status','==','pending')),s=>{document.getElementById('spt').innerText=s.size;document.getElementById('avc').innerText=s.size;});
 
@@ -879,6 +948,85 @@ function initApp(){
   );
 }
 
+// =================== V16 TRAFFIC DASHBOARD ===================
+window.TRAFFIC_DASH_CACHE=[];
+function tdMillis(v){try{return v?.toMillis?v.toMillis():v?.toDate?v.toDate().getTime():new Date(v||0).getTime();}catch{return 0;}}
+function tdTime(v){const t=tdMillis(v);return t?new Date(t).toLocaleString('en-BD'):'—';}
+function tdEsc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function tdType(x){return String(x.eventType||x.type||x.action||x.kind||'activity').toLowerCase();}
+function tdIsView(x){const t=tdType(x);return ['page_view','pageview','view','landing_view','gateway_view'].includes(t)||x.kind==='page_view';}
+function tdIsContinue(x){const t=tdType(x);return ['continue','continue_click','continue_event','redirect','smart_link_click','smartlink_click'].includes(t)||x.kind==='click';}
+async function loadTrafficDashboard(){
+  try{
+    const queries=[
+      getDocs(query(collection(db,'gateway_events'),orderBy('timestamp','desc'),limit(300))),
+      getDocs(query(collection(db,'smart_link_clicks'),orderBy('timestamp','desc'),limit(200))),
+      getDocs(query(collection(db,'user_activity'),orderBy('timestamp','desc'),limit(200))),
+      getDoc(doc(db,'settings','gateway')),
+      getDoc(doc(db,'settings','landing_pages'))
+    ];
+    const [gs,cs,as,gw,lp]=await Promise.all(queries);
+    const rows=[];
+    gs.forEach(d=>rows.push({source:'gateway',id:d.id,...d.data()}));
+    cs.forEach(d=>rows.push({source:'smart_link',id:d.id,...d.data(),kind:'click'}));
+    as.forEach(d=>rows.push({source:'activity',id:d.id,...d.data()}));
+    rows.sort((a,b)=>tdMillis(b.timestamp||b.createdAt||b.updatedAt)-tdMillis(a.timestamp||a.createdAt||a.updatedAt));
+    window.TRAFFIC_DASH_CACHE=rows;
+
+    const views=rows.filter(tdIsView).length;
+    const cont=rows.filter(tdIsContinue).length;
+    const users=new Set();
+    rows.forEach(x=>{const id=x.userId||x.uid||x.visitorId||x.sessionId||x.ipHash||x.deviceId;if(id)users.add(String(id));});
+    const recent=rows.slice(0,20);
+    const todayStart=new Date();todayStart.setHours(0,0,0,0);
+    const recentToday=rows.filter(x=>tdMillis(x.timestamp||x.createdAt)>=todayStart.getTime()).length;
+    const active=AU.filter(u=>(Number(u.rawTodayImpressions||0)>0)||(Number(u.todayTaskCount||0)>0)).length;
+    const valid=AU.reduce((n,u)=>n+Number(u.validClicks||0),0);
+
+    document.getElementById('td-total').innerText=rows.length.toLocaleString();
+    document.getElementById('td-views').innerText=views.toLocaleString();
+    document.getElementById('td-continue').innerText=cont.toLocaleString();
+    document.getElementById('td-unique').innerText=users.size.toLocaleString();
+    document.getElementById('td-recent').innerText=recentToday.toLocaleString();
+    document.getElementById('td-valid').innerText=valid.toLocaleString();
+    document.getElementById('td-active').innerText=active.toLocaleString();
+    document.getElementById('td-last-update').innerText=new Date().toLocaleTimeString('en-BD');
+
+    const gateway=gw.exists()?gw.data():{};
+    const pages=lp.exists()?lp.data():{};
+    const pageArr=Array.isArray(pages.pages)?pages.pages:[];
+    const activePages=pageArr.filter(p=>p&&p.active!==false).length;
+    const hasFinal=!!(gateway.finalUrl||gateway.smartLink);
+    const ok=hasFinal && activePages>0;
+    document.getElementById('td-config').innerText=ok?'READY':'INCOMPLETE';
+    document.getElementById('td-config').style.color=ok?'var(--gr)':'var(--re)';
+    document.getElementById('td-config-sub').innerText=`${activePages} active pages · ${hasFinal?'destination set':'destination missing'}`;
+    const cl=document.getElementById('td-config-list');
+    cl.innerHTML=[
+      ['Gateway destination',hasFinal?'Configured':'Missing',hasFinal?'var(--gr)':'var(--re)'],
+      ['Landing document',lp.exists()?'Found':'Not found',lp.exists()?'var(--gr)':'var(--g)'],
+      ['Active landing pages',String(activePages),activePages?'var(--gr)':'var(--re)'],
+      ['Rotation mode',pages.rotationMode||'rotate','var(--cy)'],
+      ['Last config check',new Date().toLocaleTimeString('en-BD'),'var(--mu)']
+    ].map(x=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:7px 8px;background:#06060f;border:1px solid var(--bo);border-radius:7px;"><span style="font-size:9.5px;color:var(--mu)">${tdEsc(x[0])}</span><b style="font-size:9.5px;color:${x[2]}">${tdEsc(x[1])}</b></div>`).join('');
+
+    const list=document.getElementById('td-activity-list');
+    if(!recent.length){list.innerHTML='<div style="padding:24px;text-align:center;color:var(--mu);font-size:10px;">No visitor telemetry found yet.</div>';return;}
+    list.innerHTML=recent.map(x=>{
+      const id=x.userId||x.uid||x.visitorId||x.sessionId||'visitor';
+      const name=x.userName||x.name||x.userEmail||String(id).slice(0,12);
+      const t=tdType(x); const isC=tdIsContinue(x), isV=tdIsView(x);
+      const label=isC?'CONTINUE':isV?'PAGE VIEW':(x.title||x.action||x.type||x.kind||'ACTIVITY');
+      const color=isC?'var(--gr)':isV?'var(--bl)':'var(--cy)';
+      return `<div class="td-row"><div class="td-avatar" style="color:${color};background:${color}18">${tdEsc(String(name).charAt(0).toUpperCase())}</div><div style="flex:1;min-width:0"><div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap"><b style="font-size:10.5px">${tdEsc(name)}</b><span class="td-pill" style="color:${color};background:${color}18">${tdEsc(label)}</span></div><div class="td-muted">${tdEsc(x.pageId||x.landingId||x.campaign||x.source||'gateway')} · ${tdEsc(tdTime(x.timestamp||x.createdAt))}</div></div><button class="btn bgh" style="padding:4px 6px;font-size:7.5px" onclick="openUserFromTraffic('${tdEsc(String(x.userId||x.uid||''))}')">VIEW</button></div>`;
+    }).join('');
+  }catch(e){
+    console.warn('Traffic dashboard:',e?.code||e?.message||e);
+    const c=document.getElementById('td-config');if(c){c.innerText='NO DATA';c.style.color='var(--g)';}
+    const l=document.getElementById('td-activity-list');if(l)l.innerHTML='<div style="padding:22px;text-align:center;color:var(--mu);font-size:10px;">Telemetry collections are not available yet. Existing user/activity data remains usable.</div>';
+  }
+}
+window.openUserFromTraffic=function(uid){if(uid&&AU.some(u=>u.uid===uid))openUser(uid);else SA.toast('No linked user record for this visitor','info');};
 function fraudScan(){const fl=document.getElementById('fl');const sus=AU.filter(u=>{const ctr=u.rawTodayImpressions>0?(u.todayTaskCount||0)/u.rawTodayImpressions*100:0;const md=AU.filter(x=>x.deviceId&&x.deviceId===u.deviceId&&u.deviceId).length>1;return ctr>20||(u.todayTaskCount>0&&!u.rawTodayImpressions)||md||(u.invalidClicks||0)>5;});document.getElementById('fb').innerText=`${sus.length} flagged`;fl.innerHTML=sus.length===0?'<p style="color:var(--gr);font-size:11px;text-align:center;padding:16px;">✓ All Clear</p>':'';sus.slice(0,5).forEach(u=>{const ctr=u.rawTodayImpressions>0?((u.todayTaskCount||0)/u.rawTodayImpressions*100).toFixed(1):'∞';fl.innerHTML+=`<div style="background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.17);border-radius:7px;padding:7px 10px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;" onclick="openUser('${u.uid}')"><div><div style="font-size:11px;font-weight:700;">${u.name}</div><div style="font-size:9px;color:var(--re);margin-top:1px;">CTR: ${ctr}% | Inv: ${u.invalidClicks||0}</div></div><span style="font-size:8.5px;background:rgba(239,68,68,.17);color:var(--re);padding:2px 6px;border-radius:4px;font-weight:800;">RISK</span></div>`;});}
 
 function detectComm(){CP=[];AU.forEach(u=>{if((u.todayEarning||0)>0&&u.joinedVia){const l1=AU.find(x=>x.referralCode===u.joinedVia);if(l1){CP.push({earner:u.name,earnerUid:u.uid,ref:l1.name,refUid:l1.uid,amt:(u.todayEarning||0)*(CS.l1/100),level:1});if(l1.joinedVia){const l2=AU.find(x=>x.referralCode===l1.joinedVia);if(l2)CP.push({earner:u.name,earnerUid:u.uid,ref:l2.name,refUid:l2.uid,amt:(u.todayEarning||0)*(CS.l2/100),level:2});}}}});renderDashComm();if(CP.length>0){aiSay(`💰 **${CP.length}টি Commission Pending!** Total: ৳${CP.reduce((a,c)=>a+c.amt,0).toFixed(2)}। Approve করব?`,'ac');CP.slice(0,2).forEach(c=>{addTick(`💰 ${c.earner} → ${c.ref} পাবে ৳${c.amt.toFixed(2)}`);notif('Commission Alert!',`${c.earner} → ${c.ref} ৳${c.amt.toFixed(2)}`,'commission');});}}
@@ -1132,6 +1280,30 @@ window.markUserActivityReviewed=async function(id){
   if(!id)return;
   try{await updateDoc(doc(db,'user_activity',id),{reviewed:true,reviewedBy:auth.currentUser?.uid||'admin',reviewedAt:Timestamp.now()});SA.toast('Activity marked as reviewed');}
   catch(e){SA.err('Could not update activity: '+(e?.message||e));}
+};
+
+window.TRAFFIC_SECURITY_CACHE=[];
+window.loadTrafficSecurity=async function(){
+  const list=document.getElementById('ts-list'); if(list)list.innerHTML='<div style="padding:25px;text-align:center;color:var(--mu);">Loading traffic telemetry…</div>';
+  try{
+    const [cs,as,ss]=await Promise.all([
+      getDocs(query(collection(db,'smart_link_clicks'),orderBy('timestamp','desc'),limit(150))),
+      getDocs(query(collection(db,'user_activity'),orderBy('timestamp','desc'),limit(150))),
+      getDocs(query(collection(db,'security_events'),orderBy('timestamp','desc'),limit(100)))
+    ]);
+    const rows=[]; cs.forEach(d=>rows.push({kind:'click',id:d.id,...d.data()})); as.forEach(d=>rows.push({kind:'activity',id:d.id,...d.data()})); ss.forEach(d=>rows.push({kind:'security',id:d.id,...d.data()}));
+    rows.sort((a,b)=>{const ta=a.timestamp?.toMillis?a.timestamp.toMillis():new Date(a.timestamp||0).getTime();const tb=b.timestamp?.toMillis?b.timestamp.toMillis():new Date(b.timestamp||0).getTime();return tb-ta;});
+    window.TRAFFIC_SECURITY_CACHE=rows;
+    const c=rows.filter(x=>x.kind==='click').length,a=rows.filter(x=>x.kind==='activity').length,s=rows.filter(x=>x.kind==='security').length,u=rows.filter(x=>x.kind!=='click'&&x.reviewed!==true).length;
+    document.getElementById('ts-clicks').innerText=c;document.getElementById('ts-activity').innerText=a;document.getElementById('ts-security').innerText=s;document.getElementById('ts-unreviewed').innerText=u;
+    renderTrafficSecurity();
+  }catch(e){if(list)list.innerHTML='<div style="padding:25px;text-align:center;color:var(--re);">Traffic telemetry could not be loaded: '+String(e?.message||e)+'</div>'; }
+};
+window.renderTrafficSecurity=function(){
+  const list=document.getElementById('ts-list');if(!list)return; const q=(document.getElementById('ts-search')?.value||'').toLowerCase().trim(),kind=document.getElementById('ts-kind')?.value||'all';
+  const rows=(window.TRAFFIC_SECURITY_CACHE||[]).filter(x=>kind==='all'||x.kind===kind).filter(x=>!q||JSON.stringify(x).toLowerCase().includes(q)).slice(0,200);
+  if(!rows.length){list.innerHTML='<div style="padding:30px;text-align:center;color:var(--mu);">No matching telemetry.</div>';return;}
+  list.innerHTML=rows.map(x=>{const t=x.timestamp?.toDate?x.timestamp.toDate().toLocaleString():new Date(x.timestamp||0).toLocaleString();const c=x.kind==='security'?'var(--re)':x.kind==='click'?'var(--cy)':'var(--pu)';const title=x.kind==='click'?`Smart link · ${x.category||x.type||'general'}`:(x.title||x.event||'Activity');const detail=x.kind==='click'?`Ref: ${x.userId||'—'} · Source: ${x.source||'direct'} · Visitor: ${x.visitorId||'—'}`:(x.detail||x.reason||'');return `<div style="display:flex;gap:10px;padding:10px 13px;border-bottom:1px solid rgba(255,255,255,.04);align-items:flex-start;"><div style="width:30px;height:30px;border-radius:8px;background:${c}16;border:1px solid ${c};color:${c};display:grid;place-items:center;flex-shrink:0;"><i class="fas ${x.kind==='security'?'fa-triangle-exclamation':x.kind==='click'?'fa-link':'fa-user-clock'}"></i></div><div style="flex:1;min-width:0;"><div style="font-size:10.5px;font-weight:800;">${escUA(title)}</div><div style="font-size:9px;color:var(--mu);margin-top:3px;word-break:break-word;">${escUA(detail)}</div><div style="font-size:8px;color:#475569;margin-top:4px;">${escUA(x.userEmail||x.userId||'public')} · ${escUA(t)}</div></div><span style="font-size:7.5px;font-weight:900;color:${c};border:1px solid ${c};padding:3px 5px;border-radius:4px;">${x.kind.toUpperCase()}</span></div>`;}).join('');
 };
 
 function renderLog(){const list=document.getElementById('al');if(!list)return;const cols={success:'var(--gr)',danger:'var(--re)',info:'var(--bl)',warning:'var(--g)'};list.innerHTML=alog.length===0?'<p style="color:var(--mu);text-align:center;padding:26px;">No activity yet</p>':alog.map(e=>`<div style="display:flex;align-items:flex-start;gap:9px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.03);"><div style="width:7px;height:7px;border-radius:50%;background:${cols[e.type]||'var(--mu)'};flex-shrink:0;margin-top:4px;"></div><div style="flex:1;"><div style="font-size:11.5px;font-weight:700;">${e.action}</div><div style="font-size:10.5px;color:var(--mu);margin-top:1px;">${e.detail}</div></div><div style="font-size:9.5px;color:var(--mu);white-space:nowrap;">${e.time}</div></div>`).join('');}
